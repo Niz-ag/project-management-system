@@ -1,4 +1,3 @@
-import { text } from "express";
 import Mailgen from "mailgen";
 import nodemailer from "nodemailer";
 
@@ -25,8 +24,8 @@ const sendMail = async (options) => {
 
   const mail = {
     from: "mail.projectmanagerlink.com",
-    to: options.mail,
-    subject: options.mail,
+    to: options.email,
+    subject: options.subject,
     text: emailTextual,
     html: emailHTML,
   };
@@ -44,7 +43,7 @@ const sendMail = async (options) => {
 const emailVerificationMailContent = (username, emailVerificationUrl) => {
   return {
     body: {
-      name: "username",
+      name: username,
       intro: "We are glad to invite you to our platform",
       action: {
         instructions: "Click on the following button to verify",
@@ -62,7 +61,7 @@ const emailVerificationMailContent = (username, emailVerificationUrl) => {
 const forgotPasswordMailContent = (username, forgotPasswordUrl) => {
   return {
     body: {
-      name: "username",
+      name: username,
       intro: "We got your request for password reset of your account",
       action: {
         instructions: "Click on the following button to reset",

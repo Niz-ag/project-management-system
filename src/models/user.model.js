@@ -49,7 +49,7 @@ const userSchema = new Schema(
       default: false,
     },
 
-    refreshTokens: {
+    refreshToken: {
       type: String,
     },
 
