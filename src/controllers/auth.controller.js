@@ -1,6 +1,6 @@
 import { ApiResponse } from "../utils/api-response.js";
 import { asyncHandler } from "../utils/async-handler.js";
-import {User} from "../models/user.model.js";
+import { User } from "../models/user.model.js";
 import { ApiError } from "../utils/api-error.js";
 import { emailVerificationMailContent, sendMail } from "../utils/mail.js";
 const generateAccessandRefreshToken = async (userId) => {
