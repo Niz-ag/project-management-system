@@ -53,7 +53,7 @@ const registerUser = asyncHandler(async (req, res) => {
     subject: "Please verify you email.",
     mailgenContent: emailVerificationMailContent(
       user.username,
-      `${req.protocol}://${req.get("host")}/api/v1/users/verify-email/${unHashedToken}`,
+      `${req.protocol}://${req.get("host")}/api/v1/auth/verify-email/${unHashedToken}`,
     ),
   });
   const createdUser = await User.findById(user._id).select(
@@ -192,7 +192,7 @@ const resendEmailVerification = asyncHandler(async (req, res) => {
     subject: "Please verify you email.",
     mailgenContent: emailVerificationMailContent(
       user.username,
-      `${req.protocol}://${req.get("host")}/api/v1/users/verify-email/${unHashedToken}`,
+      `${req.protocol}://${req.get("host")}/api/v1/auth/verify-email/${unHashedToken}`,
     ),
   });
   return res.status(200).json(new ApiResponse(200, {}, "Mail has been sent"));
@@ -202,8 +202,9 @@ const refreshAccessToken = asyncHandler(async (req, res) => {
   const incomingRefreshToken =
     req.cookies.refreshToken || req.body.refreshToken;
 
-  if (!incomingRefreshToken) throw new ApiError(401, "Unauthorized Token");
-
+  if (!incomingRefreshToken) {
+    throw new ApiError(401, "Unauthorized Token");
+  }
   try {
     const decodedToken = jwt.verify(
       incomingRefreshToken,
@@ -211,10 +212,12 @@ const refreshAccessToken = asyncHandler(async (req, res) => {
     );
     const user = await User.findById(decodedToken?._id);
 
-    if (!user) throw new ApiError(401, "Invalid Refresh Token");
-    if (incomingRefreshToken !== user?.refreshToken)
+    if (!user) {
+      throw new ApiError(401, "Invalid Refresh Token");
+    }
+    if (incomingRefreshToken !== user?.refreshToken) {
       throw new ApiError(401, "Refresh Token is expired");
-
+    }
     const options = {
       httpOnly: true,
       secure: true,

@@ -9,13 +9,13 @@ import {
   userLoginValidator,
   userRegisterValidator,
 } from "../validators/index.js";
-import { verfiyJWT } from "../middlewares/auth.middleware.js";
+import { verifyJWT } from "../middlewares/auth.middleware.js";
 
 const router = Router();
 router.route("/register").post(userRegisterValidator(), validate, registerUser);
-router.route("/login").post(userLoginValidator, validate, login);
+router.route("/login").post(userLoginValidator(), validate, login);
 
 //protected routes
-router.route("/logout").post(verfiyJWT, logoutUser);
+router.route("/logout").post(verifyJWT, logoutUser);
 
 export default router;
