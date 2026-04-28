@@ -38,7 +38,8 @@ const userChangeCurrentPasswordValidator = () => {
 const userforgotPasswordValidator = () => {
   return [
     body("email")
-      .notEmpty().withMessage("Email is required")
+      .notEmpty()
+      .withMessage("Email is required")
       .isEmail()
       .withMessage("Invalid Email"),
   ];
