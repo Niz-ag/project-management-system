@@ -33,8 +33,8 @@ const taskSchema = new Schema(
       default: TaskStatusEnum.TODO,
     },
 
-    attachment: {
-      type: [{ url: String, MimeType: String, size: Number }],
+    attachments: {
+      type: [{ url: String, mimeTypes: String, size: Number }],
       default: [],
     },
   },

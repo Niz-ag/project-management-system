@@ -21,7 +21,7 @@ const subtaskSchema = new Schema(
       default: false,
     },
 
-    CreatedBy: {
+    createdBy: {
       type: Schema.Types.ObjectId,
       ref: "User",
     },

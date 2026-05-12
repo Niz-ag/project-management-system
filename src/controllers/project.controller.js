@@ -68,7 +68,9 @@ const getProjectsById = asyncHandler(async (req, res) => {
   const project = await Project.findById(projectId);
 
   if (!project) throw new ApiError(404, "Project not found");
-  return res.status(200).json(new ApiResponse(200, project, "Project Fetched successfully"));
+  return res
+    .status(200)
+    .json(new ApiResponse(200, project, "Project Fetched successfully"));
 });
 
 const createProjects = asyncHandler(async (req, res) => {
@@ -147,7 +149,9 @@ const addMembersToProjects = asyncHandler(async (req, res) => {
       upsert: true,
     },
   );
-  return res.status(201).json(new ApiResponse(201, {}, "project member is successfully added"));
+  return res
+    .status(201)
+    .json(new ApiResponse(201, {}, "project member is successfully added"));
 });
 
 const getProjectMembers = asyncHandler(async (req, res) => {
@@ -200,7 +204,13 @@ const getProjectMembers = asyncHandler(async (req, res) => {
   ]);
   return res
     .status(200)
-    .json(new ApiResponse(200, projectMembers, "project members succesfully fetched"));
+    .json(
+      new ApiResponse(
+        200,
+        projectMembers,
+        "project members succesfully fetched",
+      ),
+    );
 });
 const updateMemberRole = asyncHandler(async (req, res) => {
   const { projectId, userId } = req.params;

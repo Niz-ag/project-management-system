@@ -6,7 +6,7 @@ import { ProjectMember } from "../models/projectmember.model.js";
 import mongoose from "mongoose";
 
 export const validateProjectPermission = (roles = []) => {
-   return asyncHandler(async (req, res, next) => {
+  return asyncHandler(async (req, res, next) => {
     const { projectId } = req.params;
     if (!projectId) throw new ApiError(404, "project not found");
     const project = await ProjectMember.findOne({
