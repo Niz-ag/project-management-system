@@ -22,11 +22,11 @@ const subtaskSchema = new Schema(
     },
 
     CreatedBy: {
-      type: Schema.Types.ObjectId(),
+      type: Schema.Types.ObjectId,
       ref: "User",
     },
   },
   { timestamps: true },
 );
 
-export const subtask = mongoose.model("Subtask", subtaskSchema);
+export const Subtask = mongoose.model("Subtask", subtaskSchema);

@@ -15,7 +15,7 @@ import {
 import {
   addMembertoProjectValidator,
   createProjectValidator,
-} from "../validators";
+} from "../validators/index.js";
 
 import { validate } from "../middlewares/validator.middleware.js";
 
@@ -61,4 +61,4 @@ router
     deleteMembersFromProject,
   );
 
-export default Router;
+export default router;
